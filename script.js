@@ -20,7 +20,38 @@ function iniciarJuego() {
 
 iniciarJuego();
 
-botonProbar.addEventListener("click", function () {
+botonProbar.addEventListener("click", function () {botonProbar.addEventListener("click", function () {
+
+  // 1️⃣ Validar que escribió algo
+  if (input.value === "") {
+    resultado.innerText = "⚠️ Escribí un número primero";
+    return;
+  }
+
+  let numeroUsuario = Number(input.value);
+  let max = Number(dificultad.value);
+
+  // 2️⃣ Validar rango
+  if (numeroUsuario < 1 || numeroUsuario > max) {
+    resultado.innerText = "⚠️ El número debe estar entre 1 y " + max;
+    return;
+  }
+
+  intentos++;
+
+  // 3️⃣ Lógica del juego
+  if (numeroUsuario === numeroSecreto) {
+    resultado.innerText = "🎉 ¡Ganaste! El número era " + numeroSecreto;
+    botonProbar.disabled = true;
+  } else if (numeroUsuario < numeroSecreto) {
+    resultado.innerText = "📈 Más alto";
+  } else {
+    resultado.innerText = "📉 Más bajo";
+  }
+
+  intentosTexto.innerText = "Intentos: " + intentos;
+});
+
   let numeroUsuario = Number(input.value);
   intentos++;
 
